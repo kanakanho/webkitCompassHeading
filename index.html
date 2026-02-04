@@ -7,7 +7,27 @@
         <title>webkitcompassheading</title>
     </head>
     <body>
-        <script>
+        <button id="start">Start</button>
+    </body>
+    <script>
+        const startButton = document.getElementById("start");
+        startButton.addEventListener("click", () => {
+            if (typeof DeviceOrientationEvent.requestPermission === "function") {
+                DeviceOrientationEvent.requestPermission()
+                    .then((response) => {
+                        if (response === "granted") {
+                            console.log("Permission granted for device orientation.");
+                        } else {
+                            console.log("Permission denied for device orientation.");
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error requesting device orientation permission:", error);
+                    });
+            } else {
+                console.log("DeviceOrientationEvent.requestPermission is not supported.");
+            }
+
             window.addEventListener("deviceorientation", (event) => {
                 if (event.webkitCompassHeading !== undefined) {
                     console.log(`Compass Heading: ${event.webkitCompassHeading}`);
@@ -15,6 +35,6 @@
                     console.log("webkitCompassHeading is not supported on this device.");
                 }
             });
-        </script>
-    </body>
+        });
+    </script>
 </html>
