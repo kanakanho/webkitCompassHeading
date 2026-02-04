@@ -8,7 +8,12 @@
     </head>
     <body>
         <button id="start">Start</button>
+        <hr />
         <p id="heading"></p>
+        <hr />
+        <p id="alpha"></p>
+        <p id="beta"></p>
+        <p id="gamma"></p>
     </body>
     <script>
         const startButton = document.getElementById("start");
@@ -37,6 +42,15 @@
                     console.log(`Compass Heading: ${event.webkitCompassHeading}`);
                 } else {
                     console.log("webkitCompassHeading is not supported on this device.");
+                }
+                if (event.alpha !== null) {
+                    document.getElementById("alpha").textContent = `Alpha: ${event.alpha}`;
+                }
+                if (event.beta !== null) {
+                    document.getElementById("beta").textContent = `Beta: ${event.beta}`;
+                }
+                if (event.gamma !== null) {
+                    document.getElementById("gamma").textContent = `Gamma: ${event.gamma}`;
                 }
             });
         });
