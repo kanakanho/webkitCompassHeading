@@ -8,9 +8,12 @@
     </head>
     <body>
         <button id="start">Start</button>
+        <p id="heading"></p>
     </body>
     <script>
         const startButton = document.getElementById("start");
+        const headingDisplay = document.getElementById("heading");
+
         startButton.addEventListener("click", () => {
             if (typeof DeviceOrientationEvent.requestPermission === "function") {
                 DeviceOrientationEvent.requestPermission()
@@ -30,6 +33,7 @@
 
             window.addEventListener("deviceorientation", (event) => {
                 if (event.webkitCompassHeading !== undefined) {
+                    headingDisplay.textContent = `Compass Heading: ${event.webkitCompassHeading}`;
                     console.log(`Compass Heading: ${event.webkitCompassHeading}`);
                 } else {
                     console.log("webkitCompassHeading is not supported on this device.");
