@@ -7,6 +7,14 @@
         <title>webkitcompassheading</title>
     </head>
     <body>
-        <script type="module" src="/src/main.ts"></script>
+        <script>
+            window.addEventListener("deviceorientation", (event) => {
+                if (event.webkitCompassHeading !== undefined) {
+                    console.log(`Compass Heading: ${event.webkitCompassHeading}`);
+                } else {
+                    console.log("webkitCompassHeading is not supported on this device.");
+                }
+            });
+        </script>
     </body>
 </html>
